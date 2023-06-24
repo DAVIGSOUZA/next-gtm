@@ -58,19 +58,14 @@ export default function VirtualizedList() {
         
         itemContent={(index, data) => {
           if (data.ad) {
-            // console.log('If de anuncio ' + index);
-            
             return (
               <AdSlot 
                 id={`virtualized ${data.page + data.index + Math.floor(Math.random() * 100000000)}`}
-                lazy={false}
                 virtualized={true}
               />
             )
           } 
-
-          // console.log('else conteudo normal ' + index);
-
+          
           return (
             <div >
               <br />
