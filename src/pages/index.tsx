@@ -6,11 +6,15 @@ export default function Home() {
   return (
     <main className={`${styles.main}`}>
       <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/pages/index.tsx</code>
-        </p>
+        <p>HOME</p>
+          
+        <Link href={'/another-page'}> Another Page </Link>
+
+        <Link href={'/virtualized'}> Virtuoso List </Link>
       </div>
+
+      <br />
+      <br />
 
       <AdSlot id='1'/>
 
@@ -22,9 +26,6 @@ export default function Home() {
 
       <AdSlot id='3'/>
 
-      <Link href={'/another-page'}> Another Page </Link>
-
-      <Link href={'/virtuoso'}> Virtuoso List </Link>
     </main>
   )
 }
