@@ -9,7 +9,7 @@ type ListData = {
   page: number
   index: number
   text: string
-  ad?: boolean
+  adId?: string
 }
 
 export default function VirtualizedList() {
@@ -22,10 +22,10 @@ export default function VirtualizedList() {
         return {page ,index, text}
       })
 
-      const adInsertionInterval = 10
+      const adInsertionInterval = 30
 
-      for (let i = 10; i < newData.length; i += adInsertionInterval) {
-        newData.splice(i, 0, {...newData[0], ad: true}) 
+      for (let i = 30; i < newData.length; i += adInsertionInterval) {
+        newData.splice(i, 0, {...newData[0], adId: `virtualized_${Math.floor(Math.random() * 100000000)}`}) 
       }
       
       setPage(prevPage => prevPage += 1)
@@ -57,10 +57,12 @@ export default function VirtualizedList() {
         useWindowScroll
         
         itemContent={(index, data) => {
-          if (data.ad) {
+          if (data.adId) {
+            console.log(data.adId);
+            
             return (
               <AdSlot 
-                id={`virtualized ${data.page + data.index + Math.floor(Math.random() * 100000000)}`}
+                id={data.adId}
                 virtualized={true}
               />
             )

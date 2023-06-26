@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.googletag = window.googletag || { cmd: [] }
-
+      
       console.log("GPT INICIALIZADO")
 
       googletag.cmd.push(() => {

@@ -5,7 +5,6 @@ const AdSlot = ({
   virtualized = false
 }: {id: string, virtualized?: boolean}) => {
   const [isIntersecting, setIsintersecting] = useState(false)
-  const [SRA, setSRA] = useState(false)
   const adRef = useRef<HTMLDivElement>(null)
 
   const observer = useMemo(() => {
@@ -23,15 +22,11 @@ const AdSlot = ({
       return () => observer.disconnect()
     }
   }, [adRef, observer])
-
+  
   useEffect(() => {
     let slot:googletag.Slot
 
     googletag.cmd.push(() => {
-      if (virtualized) {
-        googletag.pubads().enableSingleRequest()
-      }
-      
       googletag.enableServices()
       
       if (!virtualized) {
@@ -47,8 +42,7 @@ const AdSlot = ({
         const size: googletag.GeneralSize = [300, 250]
     
         slot = googletag.defineSlot(adUnitPath, size, id)!.addService(googletag.pubads())  
-        
-        googletag.display(id)
+        googletag.pubads().refresh([slot])
       }
     })
 
@@ -80,7 +74,7 @@ const AdSlot = ({
       
           slot = googletag.defineSlot(adUnitPath, size, id)!.addService(googletag.pubads())
 
-          googletag.display(slot)
+          googletag.pubads().refresh([slot])
         })
       }
 
